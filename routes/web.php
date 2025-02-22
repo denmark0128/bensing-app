@@ -17,3 +17,11 @@ Route::get('/test-container', function (Request $request){
 Route::get('/test-provider', function (UserService $userService){
     return $userService->listUsers();
 });
+
+Route::get('/test-users', [UserController::class, 'index']);
+
+Route::get('/test-facade', function (UserService $userService){
+    return Response::json($userService->listUsers());
+});
+
+?>
