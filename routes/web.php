@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
 use App\Services\UserService;
 use App\Http\Controllers\UserController;
+use App\Services\ProductService;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -53,12 +55,22 @@ Route::get('/token', function(Request $request){
 Route::post('/token', function(Request $request){
     return $request->all();
 });
-/*
+/*  
 Route::get('/token', function (Request $request) {
     $token = $request->session()->token();
     return view('token', ['token' => $token]);
 });
 */
+
+Route::get('/users', [UserController::class, 'index'])-> middleware('user-middleware');
+
+Route::resource('/products', ProductController::class);
+
+Route::get('/product-list', function (ProductService $productService) {
+    $data['products'] = $productService->listProducts();
+    return view('products.list', $data);
+});
+
 Route::get('/test-provider', function (UserService $userService){
     return $userService->listUsers();
 });
