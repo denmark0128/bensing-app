@@ -15,6 +15,7 @@
                 <td>{{ $user['name'] }}</td>
                 <td>{{ $user['gender'] }}</td>
             </tr>
+            @endforeach
         </tbody>
     </table>
 </x-layout>
