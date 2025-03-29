@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-    </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-        <h1>Hello </h1>
-    </body>
-</html>
+<x-layout>
+    <x-slot:heading>
+        <h1>Welcome to {{ $name }}</h1>
+    </x-slot>
+</x-layout>

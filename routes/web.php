@@ -8,8 +8,12 @@ use App\Services\ProductService;
 use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', ['name' => 'denmark-app']);
 });
+
+Route::get('/users', [UserController::class, 'index']);
+
+Route::resource('/products', ProductController::class);
 
 Route::get('/post/{post}/comment/{comment}', function ( String $postId,  String $comment) {
     return 'Post ID: ' . $postId . ' - Comment: ' . $comment;
@@ -62,9 +66,9 @@ Route::get('/token', function (Request $request) {
 });
 */
 
-Route::get('/users', [UserController::class, 'index'])-> middleware('user-middleware');
+/*Route::get('/users', [UserController::class, 'index'])-> middleware('user-middleware');
 
-Route::resource('/products', ProductController::class);
+Route::resource('/products', ProductController::class); */
 
 Route::get('/product-list', function (ProductService $productService) {
     $data['products'] = $productService->listProducts();
